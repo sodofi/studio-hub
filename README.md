@@ -7,6 +7,7 @@
 
 3. Run the following command
 
+### `npm install`
 ### `npm start`
 
 4. In another terminal in the same directory run to start json server (fake backend)
