@@ -11,7 +11,7 @@
 
 4. In another terminal in the same directory run to start json server (fake backend)
 
-###npx json-server --watch data/db.json --port 8000
+### `npx json-server --watch data/db.json --port 8000`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
