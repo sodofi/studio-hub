@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
+import logo from './images/logo.png';
+
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h1>StudioHub</h1>
+      <img src={logo} alt="StudioHub logo" />
       <div className="links">
         <Link to="/">Hubs</Link>
-        <Link to="/create" style={{ 
-          color: 'white', 
-          backgroundColor: '#f1356d',
-          borderRadius: '8px' 
-        }}>Create Hub</Link>
+        <Link to="/create" className="primary-button">Create Hub</Link>
       </div>
     </nav>
   );

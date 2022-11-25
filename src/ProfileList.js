@@ -5,7 +5,7 @@ const ProfileList = ({ profiles }) => {
   return (
     <div className="grid-list">
       {profiles.map(profile => (
-        <div className="blog-preview" key={profile.id} >
+        <div className="prof-preview" key={profile.id} >
           <Link to={`/profiles/${profile.id}`}>
             <img src={profile.pfp} alt="Pfp" />
             <h2>{ profile.name }</h2>

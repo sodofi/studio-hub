@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "./useFetch";
 import { Link } from "react-router-dom";
@@ -14,9 +14,10 @@ const AddProject = () => {
 
 
   const [title, setTitle] = useState('');
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState('https://images.unsplash.com/photo-1512314889357-e157c22f938d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80');
   const [desc, setDesc] = useState('');
-  const [tags, setTags] = useState('');
+  const [tags, setTags] = useState('general');
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +41,6 @@ const AddProject = () => {
       history.push(`/profiles/${profile.id}`);
       //window.location.reload();
     })
-
   }
 
   return (
@@ -50,36 +50,37 @@ const AddProject = () => {
         <label>Project Title:</label>
         <input 
           type="text" 
-         // required 
+          required 
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {setTitle(e.target.value) ; console.log(title)}}
         />
         <label>Project Photo URL:</label>
         <input 
           type="url" 
           placeholder="https://example.com"
-          value={img}
+          //value={img}
           onChange={(e) => {setImg(e.target.value)}}
         />
         <label>Description:</label>
         <input 
           type="text" 
-          //required 
+          required 
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
         />
         <label>Tags:</label>
         <select
           value={tags}
-          //required
+          required
           onChange={(e) => setTags(e.target.value)}
         >
+          <option value="general">general</option>
           <option value="design">design</option>
-          <option value="frontend">frontend</option>
-          <option value="backend">backend</option>
-          <option value="ui/ux">ui/ux</option>
+          <option value="research">research</option>
+          <option value="software engineering">software engineering</option>
+          <option value="data science">data science</option>
         </select>
-        <button>Create project</button>
+        <button className="primary-button">Create project</button>
       </form>
     </div>
   );

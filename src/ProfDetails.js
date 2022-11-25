@@ -3,12 +3,14 @@ import useFetch from "./useFetch";
 import ProjectList from "./ProjectList";
 import { Link } from "react-router-dom";
 import AddProject from "./AddProject";
-
+import github from './images/github.png';
+import linkedin from './images/linkedin.png';
+import mail from './images/mail.png';
 
 const ProfDetails = () => {
+  const history = useHistory();
   const { id } = useParams();
   const { data: profile, error, isPending } = useFetch('http://localhost:8000/profiles/' + id);
-  const history = useHistory();
 
   const handleClick = () => {
     fetch('http://localhost:8000/profiles/' + profile.id, {
@@ -23,40 +25,38 @@ const ProfDetails = () => {
   }
 
   return (
-    <div className="blog-details">
+    <div className="prof-details">
       { isPending && <div>Loading...</div> }
       { error && <div>{ error }</div> }
       { profile && (
         <div>
-        <div className="blog-info">
-          <div className="left-side">
-            <h2>{ profile.name }</h2>
-            <p>Written by { profile.major }</p>
-            <div>{ profile.year }</div>
+          <div className="prof-info">
+            <div className="left-side">
+              <h2>Hi, I'm</h2>
+              <h1 style={{"font-weight": '800', "font-size": "42px"}}>{ profile.name }</h1>
+              <p>I'm a {profile.year} studying { profile.major } at Stanford University. Currently, working on {profile.projects.length} projects.</p>
+              <div className="socials" style={{"flex-direction": "column"}}>
+                <a href={profile.linkedin} target="_blank"><img src={linkedin} alt="linkedin"/></a>
+                <a href={profile.email} target="_blank"><img src={mail} alt="email"/></a>
+                <a href={profile.gitHub} target="_blank"><img src={github} alt="github"/></a>
+              </div>
+            </div>
+
+            <div className="right-side">
+              <img src={profile.pfp} alt="Pfp" />
+            </div>
           </div>
 
-          <div className="right-side">
-            <img id="pfp" src={profile.pfp} alt="Pfp" />
-          </div>
-          
-          {/* <button onClick={handleClick}>delete</button> */}
-        </div>
           <div className="project-bar">
-            <h2>Projects</h2>
-            <button onClick={addProject}>Add Project</button>
-            {/* <Link to="/addProject" params={} style={{ 
-              color: 'white', 
-              backgroundColor: '#f1356d',
-              borderRadius: '8px',
-              padding: '5px' 
-            }}>Add Project</Link> */}
+            <h3>Projects</h3>
+            <button class="primary-button" onClick={addProject}>Add Project</button>
           </div>
-          
+            
           <hr/>
 
           <div className="project-div">
-            <ProjectList projects={profile.projects}/>
-            
+            <ProjectList projects={profile.projects}/>      
+            <button class="primary-button" onClick={handleClick}>Delete Hub</button>
           </div>
 
         </div>
